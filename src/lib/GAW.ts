@@ -27,15 +27,15 @@ export default class GAW {
     }
   }
 
-  include_component(name){
+  load_component(name){
     try{
-      var s = this.asset('template', 'view/component/' + name + "/vue.js");
+      var s = this.asset('template', 'view/component/' + name + "/vue.js.html");
       var t = this.asset('template', 'view/component/' + name + "/template.html");
-      return (
-        '<script type="text/javascript">' + s.evaluate().getContent() + '</script>'
-        + '<script type="text/template" id="template:component-' + name + '-view">'
+      return ( ""
+        + '<script type="text/template" id="template--component-view-' + name + '">'
         + t.evaluate().getContent()
         + '</script>'
+        + s.evaluate().getContent()
       );
     }catch(e){
       return "Error: " + e.message;
