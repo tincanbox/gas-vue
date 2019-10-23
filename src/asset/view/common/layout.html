@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <base target="_top">
+  <title><?= title ?></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script type="text/javascript">
+  var GAW = GAW || {};
+  GAW.render = function(id, param){
+    var el = document.getElementById('template:' + id);
+    var tp = _.template(el ? el.innerHTML : "TEMPLATE_ERROR");
+    return param ? tp(param) : tp;
+  }
+  </script>
+  </head>
+  <body>
+    <div id="gaw-frame">
+      <?!= GAWapp.include('component', 'header'); ?>
+      <?!= GAWapp.include('page', page); ?>
+    </div>
+    <?!= GAWapp.include('component', 'vue'); ?>
+    <script>
+      GAW.vue = new Vue({
+        el: '#gaw-frame'
+      });
+    </script>
+
+  </body>
+</html>
